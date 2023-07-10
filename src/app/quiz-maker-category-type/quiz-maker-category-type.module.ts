@@ -10,6 +10,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { CommonModule } from '@angular/common';
 import { QuizMakerCategoryTypeComponent } from './quiz-maker-category-type.component';
 import { NgModule } from '@angular/core';
+import { QuizMakerResultPageComponent } from '../quiz-maker-result-page/quiz-maker-result-page.component';
 
 @NgModule({
   imports: [
@@ -24,6 +25,6 @@ import { NgModule } from '@angular/core';
     SkeletonModule,
     QuizMakerRoutingModule,
   ],
-  declarations: [QuizMakerCategoryTypeComponent],
+  declarations: [QuizMakerCategoryTypeComponent, QuizMakerResultPageComponent],
 })
-export class QuizmakerCategoryAppModule {}
+export class QuizMakerCategoryTypeAppModule {}

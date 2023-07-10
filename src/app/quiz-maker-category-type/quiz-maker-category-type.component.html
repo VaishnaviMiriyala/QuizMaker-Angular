@@ -1,0 +1,68 @@
+<div class="conatiner p-4">
+  <h3 class="txt_align">Quiz Maker</h3>
+  <div class="grid">
+    <div class="flex wd-area col">
+      <p-dropdown
+        id="categorySelect"
+        [options]="category"
+        [(ngModel)]="selectedCategory"
+        placeholder="Select a category"
+        [editable]="true"
+        optionLabel="name"
+        styleClass="mr-2"
+        (onChange)="selectCategoryId($event.value.id)"
+      ></p-dropdown>
+
+      <p-dropdown
+        id="difficultySelect"
+        [options]="difficulties"
+        [(ngModel)]="selecteddiffculty"
+        placeholder="Select difficulty"
+        [editable]="true"
+        optionLabel="name"
+        styleClass="mr-2"
+        (onChange)="selecteDifficultyId($event.value.name)"
+      ></p-dropdown>
+
+      <p-button
+        id="createBtn"
+        label="Create"
+        [disabled]="disabled"
+        (click)="createQuestion()"
+      >
+      </p-button>
+    </div>
+  </div>
+  <div>
+    <div class="grid" *ngFor="let ques of quesresults; let i = index">
+      <div class="col-12">
+        <p [innerHTML]="ques.question"></p>
+      </div>
+      <div
+        class="fitcontent ml-4 col"
+        *ngFor="let btns of ques.incorrect_answers; let j = index"
+      >
+        <button
+          pButton
+          pRipple
+          class="p-button-outlined"
+          id="bt_{{ i + '_' + j }}"
+          (click)="clickButton(btns, i, j)"
+        >
+          <p [innerHTML]="btns"></p>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="grid" *ngIf="enableSubmit">
+    <div class="col sub_btn">
+      <button
+        class="lstSub_btn"
+        pButton
+        pRipple
+        label="Submit"
+        (click)="submitButton()"
+      ></button>
+    </div>
+  </div>
+</div>

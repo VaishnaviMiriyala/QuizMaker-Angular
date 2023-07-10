@@ -6,8 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-// import { ApiService } from './api.service';
-// import { SkeletonModule } from 'primeng/skeleton';
+import { QuizMakerApiService } from './quiz-maker-api.service';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,9 +17,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    // SkeletonModule,
+    SkeletonModule,
   ],
-  // providers: [ApiService],
+  providers: [QuizMakerApiService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
