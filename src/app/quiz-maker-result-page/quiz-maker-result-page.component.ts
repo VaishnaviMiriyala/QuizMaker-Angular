@@ -6,7 +6,7 @@ import { question } from '../shared/quiz-maker.modal';
 @Component({
   selector: 'app-quiz-maker-result-page',
   templateUrl: './quiz-maker-result-page.component.html',
-  styleUrls: ['./quiz-maker-result-page.component.css'],
+  styleUrls: ['./quiz-maker-result-page.component.scss'],
 })
 export class QuizMakerResultPageComponent implements OnInit {
   public category: number = 0;
@@ -15,11 +15,11 @@ export class QuizMakerResultPageComponent implements OnInit {
   public counter: number = 0;
 
   constructor(
-    private apiService: QuizMakerApiService,
+    private quizMakerApiService: QuizMakerApiService,
     private router: Router
   ) {}
   ngOnInit(): void {
-    this.result = this.apiService.getCompData();
+    this.result = this.quizMakerApiService.getCompData();
     this.getResult();
   }
   getResult() {

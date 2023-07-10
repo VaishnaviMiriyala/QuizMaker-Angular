@@ -7,7 +7,7 @@ import { category, difficulty, question } from '../shared/quiz-maker.modal';
 @Component({
   selector: 'app-quiz-maker-category-type',
   templateUrl: './quiz-maker-category-type.component.html',
-  styleUrls: ['./quiz-maker-category-type.component.css'],
+  styleUrls: ['./quiz-maker-category-type.component.scss'],
 })
 export class QuizMakerCategoryTypeComponent implements OnInit, OnDestroy {
   public quesresults: Array<question> = [];

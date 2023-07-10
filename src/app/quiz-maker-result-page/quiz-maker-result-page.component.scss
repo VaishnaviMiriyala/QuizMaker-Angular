@@ -1,0 +1,99 @@
+.noHover {
+  pointer-events: none;
+  cursor: default;
+}
+.red {
+  background-color: red;
+}
+.green {
+  background-color: green;
+}
+.yelow {
+  background-color: yellow;
+}
+.ques-text {
+  /*width: 100%;
+  margin-top: 7%;*/
+}
+.score-text {
+  /* width: 50%;
+  margin-top: 82px;
+  text-align: center;
+  margin-left: 20%;*/
+}
+.incorr-text {
+  /*float: left;
+  margin-left: 20px;*/
+}
+.first_txt {
+  /*margin-top: 20px;
+  margin-left: 14%;*/
+}
+.lst_quiz_btn {
+  /* width: 74%;
+  height: 40px;
+  background-color: gray;
+  color: white;*/
+  background-color: gray;
+  color: white;
+}
+
+.lst_quiz_btn:hover {
+  background-color: gray;
+  color: white;
+}
+.txt_align {
+  text-align: center;
+}
+.quiz_txt {
+  margin-left: 40%;
+}
+
+.container-body::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.left-text {
+  width: 50%;
+  float: left;
+}
+
+.right-picture {
+  float: right;
+  width: 50%;
+}
+:host::ng-deep .p-card {
+  .p-card-body {
+    padding: 10px !important;
+  }
+
+  .p-card-content {
+    padding: 0rem !important;
+  }
+}
+:host::ng-deep .p-dropdown-items-wrapper {
+  max-height: 20rem !important;
+}
+:host::ng-deep .p-card-footer {
+  .p-button {
+    color: #ffffff;
+    background: #1b6d1f;
+  }
+}
+
+.sub_btn {
+  text-align: center;
+}
+
+.lstSub_btn {
+  margin: 10px;
+  width: 60%;
+  background-color: gray;
+  color: white;
+}
+.lstSub_btn:hover {
+  background-color: gray;
+  color: white;
+}
