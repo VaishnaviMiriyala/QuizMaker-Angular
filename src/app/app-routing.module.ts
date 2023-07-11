@@ -5,8 +5,8 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./quiz-maker-category-type/quiz-maker-routing.module').then(
-        (m) => m.QuizMakerRoutingModule
+      import('./quiz-maker-category-type/quiz-maker-category-type.module').then(
+        (m) => m.QuizMakerCategoryTypeAppModule
       ),
   },
 ];

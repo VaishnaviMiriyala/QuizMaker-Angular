@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SkeletonModule } from 'primeng/skeleton';
 import { RouterModule } from '@angular/router';
-import { QuizMakerRoutingModule } from './quiz-maker-routing.module';
+import { QuizMakerCategoryTypeRoutingModule } from './quiz-maker-category-type-routing.module';
 import { DropdownModule } from 'primeng/dropdown';
 import { CommonModule } from '@angular/common';
 import { QuizMakerCategoryTypeComponent } from './quiz-maker-category-type.component';
@@ -23,7 +23,7 @@ import { QuizMakerResultPageComponent } from '../quiz-maker-result-page/quiz-mak
     RouterModule,
     HttpClientModule,
     SkeletonModule,
-    QuizMakerRoutingModule,
+    QuizMakerCategoryTypeRoutingModule,
   ],
   declarations: [QuizMakerCategoryTypeComponent, QuizMakerResultPageComponent],
 })
