@@ -15,10 +15,10 @@
         class="noHover p-button-sm"
         [ngClass]="[
           ques.correct_answer == btns &&
-          ques.selectedAnsw == ques.correct_answer
+          ques.selectedAnswer == ques.correct_answer
             ? 'green'
-            : ques.correct_answer != ques.selectedAnsw &&
-              ques.selectedAnsw == btns
+            : ques.correct_answer != ques.selectedAnswer &&
+              ques.selectedAnswer == btns
             ? 'red'
             : ques.correct_answer == btns
             ? 'green'
@@ -35,12 +35,12 @@
     <div
       class="score-text col"
       [ngClass]="{
-        red: this.counter == 0 || this.counter == 1,
-        yelow: this.counter == 2 || this.counter == 3,
-        green: this.counter == 4 || this.counter == 5
+        red: this.count == 0 || this.count == 1,
+        yelow: this.count == 2 || this.count == 3,
+        green: this.count == 4 || this.count == 5
       }"
     >
-      You Scored {{ this.counter }} Out of 5
+      You Scored {{ this.count }} Out of 5
     </div>
     <div class="col"></div>
   </div>

@@ -2,7 +2,11 @@ import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { QuizMakerApiService } from '../quiz-maker-api.service';
-import { category, difficulty, question } from '../shared/quiz-maker.modal';
+import {
+  categoryType,
+  difficultyLevel,
+  question,
+} from '../shared/quiz-maker.modal';
 
 @Component({
   selector: 'app-quiz-maker-category-type',
@@ -10,11 +14,11 @@ import { category, difficulty, question } from '../shared/quiz-maker.modal';
   styleUrls: ['./quiz-maker-category-type.component.scss'],
 })
 export class QuizMakerCategoryTypeComponent implements OnInit, OnDestroy {
-  public quesresults: Array<question> = [];
-  public difficulties: difficulty[] = [];
-  public category: category[] = [];
-  public selectedCategory: category[] = [];
-  public selecteddiffculty: difficulty[] = [];
+  public optedQuestions: Array<question> = [];
+  public difficultyLevels: difficultyLevel[] = [];
+  public categoryType: categoryType[] = [];
+  public selectedCategory: categoryType[] = [];
+  public selectedDiffculty: difficultyLevel[] = [];
   public categoryId: number = 0;
   public difficultyName: string = '';
   private subscriptions: Subscription[] = [];
@@ -23,22 +27,22 @@ export class QuizMakerCategoryTypeComponent implements OnInit, OnDestroy {
   public enableCounter: number = 0;
   public disabled: boolean = false;
   constructor(
-    private service: QuizMakerApiService,
+    private quizMakerApiService: QuizMakerApiService,
     private router: Router,
     private render: Renderer2
   ) {}
   ngOnInit(): void {
-    this.getCategory();
-    this.difficulties = [
+    this.getCategoryType();
+    this.difficultyLevels = [
       { name: 'Easy', code: 'E' },
-      { name: 'medium', code: 'M' },
-      { name: 'hard', code: 'H' },
+      { name: 'Medium', code: 'M' },
+      { name: 'Hard', code: 'H' },
     ];
   }
-  getCategory() {
+  getCategoryType() {
     this.subscriptions.push(
-      this.service.getCategory().subscribe((res: any) => {
-        this.category = res['trivia_categories'];
+      this.quizMakerApiService.getCategoryType().subscribe((res: any) => {
+        this.categoryType = res['trivia_categories'];
       })
     );
   }
@@ -46,19 +50,20 @@ export class QuizMakerCategoryTypeComponent implements OnInit, OnDestroy {
     if (this.categoryId != 0 && this.difficultyName != '') {
       this.disabled = true;
       this.subscriptions.push(
-        this.service
+        this.quizMakerApiService
           .getQuestions(this.categoryId, this.difficultyName.toLowerCase())
           .subscribe(
             (res: any) => {
-              this.quesresults = res['results'];
-              this.quesresults.forEach((ele, indx, val) => {
-                this.quesresults[indx].incorrect_answers.push(
+              this.optedQuestions = res['results'];
+              console.log(this.optedQuestions);
+              this.optedQuestions.forEach((ele, indx, val) => {
+                this.optedQuestions[indx].incorrect_answers.push(
                   ele.correct_answer
                 );
-                this.quesresults[indx].incorrect_answers = this.randomArray(
-                  this.quesresults[indx].incorrect_answers
+                this.optedQuestions[indx].incorrect_answers = this.randomArray(
+                  this.optedQuestions[indx].incorrect_answers
                 );
-                this.quesresults[indx].selectedAnsw = '';
+                this.optedQuestions[indx].selectedAnswer = '';
               });
               this.disabled = false;
             },
@@ -70,9 +75,9 @@ export class QuizMakerCategoryTypeComponent implements OnInit, OnDestroy {
     }
   }
   randomArray(array: any) {
-    for (let k = array.length - 1; k > 0; k--) {
-      const l = Math.floor(Math.random() * (k + 1));
-      [array[k], array[l]] = [array[l], array[k]];
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
   }
@@ -83,7 +88,7 @@ export class QuizMakerCategoryTypeComponent implements OnInit, OnDestroy {
     this.difficultyName = val;
   }
   clickButton(event: any, parentIndex: any, childIndex: any) {
-    this.quesresults[parentIndex].selectedAnsw = event;
+    this.optedQuestions[parentIndex].selectedAnswer = event;
     for (let i = parentIndex; i < 5; i++) {
       for (let j = 0; j < 4; j++) {
         this.render.removeClass(
@@ -110,8 +115,8 @@ export class QuizMakerCategoryTypeComponent implements OnInit, OnDestroy {
   checkEnable() {
     this.enableCounter = 0;
     this.enableSubmit = false;
-    this.quesresults.forEach((ele) => {
-      if (ele.selectedAnsw !== '') {
+    this.optedQuestions.forEach((ele) => {
+      if (ele.selectedAnswer !== '') {
         this.enableCounter++;
         if (this.enableCounter == 5) {
           this.enableSubmit = true;
@@ -123,7 +128,7 @@ export class QuizMakerCategoryTypeComponent implements OnInit, OnDestroy {
   }
   submitButton() {
     this.router.navigate(['/results']);
-    this.service.sendCompData(this.quesresults);
+    this.quizMakerApiService.setResultData(this.optedQuestions);
   }
 
   ngOnDestroy() {

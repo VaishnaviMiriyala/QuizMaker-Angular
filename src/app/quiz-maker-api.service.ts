@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../environments/environment.prod';
 import {
   question,
-  quizCategory,
+  quizCategoryType,
   quizQuestion,
 } from './shared/quiz-maker.modal';
 
@@ -13,21 +13,21 @@ import {
 })
 export class QuizMakerApiService {
   private URL = environment.endpointApi;
-  private quesURL = environment.getquestionApi;
+  private questionURL = environment.getquestionApi;
   public temp: Array<question> = [];
   constructor(private http: HttpClient) {}
-  sendCompData(data: any) {
+  setResultData(data: any) {
     this.temp = data;
   }
-  getCompData() {
+  getResultData() {
     return this.temp;
   }
-  getCategory(): Observable<quizCategory> {
-    return this.http.get<quizCategory>(this.URL);
+  getCategoryType(): Observable<quizCategoryType> {
+    return this.http.get<quizCategoryType>(this.URL);
   }
   getQuestions(category: number, diff: string): Observable<quizQuestion> {
     const mainURL =
-      this.quesURL +
+      this.questionURL +
       'amount=5&' +
       'category=' +
       category +

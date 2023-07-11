@@ -1,26 +1,22 @@
 <div class="conatiner p-4">
-  <h3 class="txt_align">Quiz Maker</h3>
+  <h3 class="txt_alignment">Quiz Maker</h3>
   <div class="grid">
-    <div class="flex wd-area col">
+    <div class="flex wd">
       <p-dropdown
         id="categorySelect"
-        [options]="category"
+        [options]="categoryType"
         [(ngModel)]="selectedCategory"
         placeholder="Select a category"
-        [editable]="true"
         optionLabel="name"
-        styleClass="mr-2"
         (onChange)="selectCategoryId($event.value.id)"
       ></p-dropdown>
 
       <p-dropdown
         id="difficultySelect"
-        [options]="difficulties"
-        [(ngModel)]="selecteddiffculty"
+        [options]="difficultyLevels"
+        [(ngModel)]="selectedDiffculty"
         placeholder="Select difficulty"
-        [editable]="true"
         optionLabel="name"
-        styleClass="mr-2"
         (onChange)="selecteDifficultyId($event.value.name)"
       ></p-dropdown>
 
@@ -34,7 +30,7 @@
     </div>
   </div>
   <div>
-    <div class="grid" *ngFor="let ques of quesresults; let i = index">
+    <div class="grid" *ngFor="let ques of optedQuestions; let i = index">
       <div class="col-12">
         <p [innerHTML]="ques.question"></p>
       </div>

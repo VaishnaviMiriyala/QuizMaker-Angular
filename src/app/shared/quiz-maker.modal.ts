@@ -1,14 +1,14 @@
-export interface difficulty {
+export interface difficultyLevel {
   name: string;
   code: string;
 }
 
-export interface category {
+export interface categoryType {
   id: number;
   name: string;
 }
-export interface quizCategory {
-  trivia_categories: Array<category>;
+export interface quizCategoryType {
+  trivia_categories: Array<categoryType>;
 }
 
 export interface question {
@@ -18,7 +18,7 @@ export interface question {
   incorrect_answers: Array<string>;
   question: string;
   type: string;
-  selectedAnsw?: string;
+  selectedAnswer?: string;
 }
 export interface quizQuestion {
   response_code: number;

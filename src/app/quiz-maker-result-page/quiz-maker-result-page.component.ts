@@ -12,20 +12,22 @@ export class QuizMakerResultPageComponent implements OnInit {
   public category: number = 0;
   public result: Array<question> = [];
   public checkAns: boolean = false;
-  public counter: number = 0;
+  public count: number = 0;
 
   constructor(
     private quizMakerApiService: QuizMakerApiService,
     private router: Router
   ) {}
   ngOnInit(): void {
-    this.result = this.quizMakerApiService.getCompData();
+    this.result = this.quizMakerApiService.getResultData();
     this.getResult();
   }
   getResult() {
     this.result.forEach((ele, indx, val) => {
-      if (this.result[indx].selectedAnsw == this.result[indx].correct_answer) {
-        this.counter++;
+      if (
+        this.result[indx].selectedAnswer == this.result[indx].correct_answer
+      ) {
+        this.count++;
         this.checkAns = true;
       }
     });
