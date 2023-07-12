@@ -20,9 +20,9 @@ export class QuizMakerResultPageComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.result = this.quizMakerApiService.getResultData();
-    this.getResult();
+    this.getScore();
   }
-  getResult() {
+  getScore() {
     this.result.forEach((ele, indx, val) => {
       if (
         this.result[indx].selectedAnswer == this.result[indx].correct_answer
