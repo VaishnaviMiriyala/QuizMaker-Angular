@@ -76,13 +76,10 @@ export class QuizMakerCategoryTypeComponent implements OnInit, OnDestroy {
     }
   }
   randomOptionArray(array: any) {
-    console.log(array);
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
-      console.log([array[i], array[j]]);
     }
-    console.log(array);
     return array;
   }
   selectCategoryTypeId(val: number) {
