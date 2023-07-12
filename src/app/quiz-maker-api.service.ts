@@ -25,14 +25,17 @@ export class QuizMakerApiService {
   getCategoryType(): Observable<quizCategoryType> {
     return this.http.get<quizCategoryType>(this.URL);
   }
-  getQuestions(category: number, diff: string): Observable<quizQuestion> {
+  getQuestions(
+    categoryId: number,
+    difficultyName: string
+  ): Observable<quizQuestion> {
     const mainURL =
       this.questionURL +
       'amount=5&' +
       'category=' +
-      category +
+      categoryId +
       '&difficulty=' +
-      diff +
+      difficultyName +
       '&type=multiple';
     return this.http.get<quizQuestion>(mainURL);
   }

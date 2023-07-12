@@ -11,7 +11,7 @@ import { questionAnswers } from '../shared/quiz-maker.modal';
 export class QuizMakerResultPageComponent implements OnInit {
   public category: number = 0;
   public result: Array<questionAnswers> = [];
-  public checkAns: boolean = false;
+  public checkAnswer: boolean = false;
   public count: number = 0;
 
   constructor(
@@ -28,11 +28,11 @@ export class QuizMakerResultPageComponent implements OnInit {
         this.result[indx].selectedAnswer == this.result[indx].correct_answer
       ) {
         this.count++;
-        this.checkAns = true;
+        this.checkAnswer = true;
       }
     });
   }
-  createNewQuiz() {
+  newQuizClicked() {
     this.router.navigate(['/']);
   }
 }
