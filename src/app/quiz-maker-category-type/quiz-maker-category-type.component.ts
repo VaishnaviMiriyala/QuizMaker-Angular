@@ -55,7 +55,6 @@ export class QuizMakerCategoryTypeComponent implements OnInit, OnDestroy {
           .subscribe(
             (res: any) => {
               this.questionAnswers = res['results'];
-              console.log(this.questionAnswers);
               this.questionAnswers.forEach((ele, indx, val) => {
                 this.questionAnswers[indx].incorrect_answers.push(
                   ele.correct_answer
