@@ -24,7 +24,7 @@ export class QuizMakerCategoryTypeComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   public isActive: boolean = false;
   public enableSubmit: boolean = false;
-  public count: number = 0;
+  public counter: number = 0;
   public disabled: boolean = false;
   constructor(
     private quizMakerApiService: QuizMakerApiService,
@@ -117,12 +117,12 @@ export class QuizMakerCategoryTypeComponent implements OnInit, OnDestroy {
   }
 
   checkEnable() {
-    this.count = 0;
+    this.counter = 0;
     this.enableSubmit = false;
     this.questionAnswers.forEach((ele) => {
       if (ele.selectedAnswer !== '') {
-        this.count++;
-        if (this.count == 5) {
+        this.counter++;
+        if (this.counter == 5) {
           this.enableSubmit = true;
         }
       } else {
