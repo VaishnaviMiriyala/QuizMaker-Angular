@@ -11,7 +11,7 @@ export interface quizCategoryType {
   trivia_categories: Array<categoryType>;
 }
 
-export interface question {
+export interface questionAnswers {
   category: string;
   correct_answer: string;
   difficulty: string;
@@ -22,5 +22,5 @@ export interface question {
 }
 export interface quizQuestion {
   response_code: number;
-  results: Array<question>;
+  results: Array<questionAnswers>;
 }

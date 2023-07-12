@@ -5,7 +5,7 @@ import { QuizMakerApiService } from '../quiz-maker-api.service';
 import {
   categoryType,
   difficultyLevel,
-  question,
+  questionAnswers,
 } from '../shared/quiz-maker.modal';
 
 @Component({
@@ -14,7 +14,7 @@ import {
   styleUrls: ['./quiz-maker-category-type.component.scss'],
 })
 export class QuizMakerCategoryTypeComponent implements OnInit, OnDestroy {
-  public optedQuestions: Array<question> = [];
+  public questionAnswers: Array<questionAnswers> = [];
   public difficultyLevels: difficultyLevel[] = [];
   public categoryType: categoryType[] = [];
   public selectedCategory: categoryType[] = [];
@@ -24,7 +24,7 @@ export class QuizMakerCategoryTypeComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   public isActive: boolean = false;
   public enableSubmit: boolean = false;
-  public enableCounter: number = 0;
+  public count: number = 0;
   public disabled: boolean = false;
   constructor(
     private quizMakerApiService: QuizMakerApiService,
@@ -54,16 +54,17 @@ export class QuizMakerCategoryTypeComponent implements OnInit, OnDestroy {
           .getQuestions(this.categoryId, this.difficultyName.toLowerCase())
           .subscribe(
             (res: any) => {
-              this.optedQuestions = res['results'];
-              console.log(this.optedQuestions);
-              this.optedQuestions.forEach((ele, indx, val) => {
-                this.optedQuestions[indx].incorrect_answers.push(
+              this.questionAnswers = res['results'];
+              console.log(this.questionAnswers);
+              this.questionAnswers.forEach((ele, indx, val) => {
+                this.questionAnswers[indx].incorrect_answers.push(
                   ele.correct_answer
                 );
-                this.optedQuestions[indx].incorrect_answers = this.randomArray(
-                  this.optedQuestions[indx].incorrect_answers
-                );
-                this.optedQuestions[indx].selectedAnswer = '';
+                this.questionAnswers[indx].incorrect_answers =
+                  this.randomOptionArray(
+                    this.questionAnswers[indx].incorrect_answers
+                  );
+                this.questionAnswers[indx].selectedAnswer = '';
               });
               this.disabled = false;
             },
@@ -74,7 +75,7 @@ export class QuizMakerCategoryTypeComponent implements OnInit, OnDestroy {
       );
     }
   }
-  randomArray(array: any) {
+  randomOptionArray(array: any) {
     console.log(array);
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -84,14 +85,14 @@ export class QuizMakerCategoryTypeComponent implements OnInit, OnDestroy {
     console.log(array);
     return array;
   }
-  selectCategoryId(val: number) {
+  selectCategoryTypeId(val: number) {
     this.categoryId = val;
   }
-  selecteDifficultyId(val: string) {
+  selecteDifficultyLevelId(val: string) {
     this.difficultyName = val;
   }
-  clickButton(event: any, parentIndex: any, childIndex: any) {
-    this.optedQuestions[parentIndex].selectedAnswer = event;
+  buttonSelected(event: any, parentIndex: any, childIndex: any) {
+    this.questionAnswers[parentIndex].selectedAnswer = event;
     for (let i = parentIndex; i < 5; i++) {
       for (let j = 0; j < 4; j++) {
         this.render.removeClass(
@@ -116,12 +117,12 @@ export class QuizMakerCategoryTypeComponent implements OnInit, OnDestroy {
   }
 
   checkEnable() {
-    this.enableCounter = 0;
+    this.count = 0;
     this.enableSubmit = false;
-    this.optedQuestions.forEach((ele) => {
+    this.questionAnswers.forEach((ele) => {
       if (ele.selectedAnswer !== '') {
-        this.enableCounter++;
-        if (this.enableCounter == 5) {
+        this.count++;
+        if (this.count == 5) {
           this.enableSubmit = true;
         }
       } else {
@@ -129,9 +130,9 @@ export class QuizMakerCategoryTypeComponent implements OnInit, OnDestroy {
       }
     });
   }
-  submitButton() {
+  clickSubmit() {
     this.router.navigate(['/results']);
-    this.quizMakerApiService.setResultData(this.optedQuestions);
+    this.quizMakerApiService.setResultData(this.questionAnswers);
   }
 
   ngOnDestroy() {

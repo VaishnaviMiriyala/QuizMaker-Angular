@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment.prod';
 import {
-  question,
+  questionAnswers,
   quizCategoryType,
   quizQuestion,
 } from './shared/quiz-maker.modal';
@@ -14,7 +14,7 @@ import {
 export class QuizMakerApiService {
   private URL = environment.endpointApi;
   private questionURL = environment.getquestionApi;
-  public temp: Array<question> = [];
+  public temp: Array<questionAnswers> = [];
   constructor(private http: HttpClient) {}
   setResultData(data: any) {
     this.temp = data;
