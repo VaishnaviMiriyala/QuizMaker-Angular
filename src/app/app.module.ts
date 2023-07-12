@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { QuizMakerApiService } from './quiz-maker-api.service';
-import { SkeletonModule } from 'primeng/skeleton';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +16,6 @@ import { SkeletonModule } from 'primeng/skeleton';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    SkeletonModule,
   ],
   providers: [QuizMakerApiService],
   bootstrap: [AppComponent],

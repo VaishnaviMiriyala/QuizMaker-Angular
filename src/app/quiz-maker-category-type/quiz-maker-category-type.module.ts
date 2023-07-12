@@ -3,7 +3,6 @@ import { CardModule } from 'primeng/card';
 import { AccordionModule } from 'primeng/accordion';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { SkeletonModule } from 'primeng/skeleton';
 import { RouterModule } from '@angular/router';
 import { QuizMakerCategoryTypeRoutingModule } from './quiz-maker-category-type-routing.module';
 import { DropdownModule } from 'primeng/dropdown';
@@ -22,7 +21,6 @@ import { QuizMakerResultPageComponent } from '../quiz-maker-result-page/quiz-mak
     FormsModule,
     RouterModule,
     HttpClientModule,
-    SkeletonModule,
     QuizMakerCategoryTypeRoutingModule,
   ],
   declarations: [QuizMakerCategoryTypeComponent, QuizMakerResultPageComponent],

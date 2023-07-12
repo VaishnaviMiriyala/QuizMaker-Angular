@@ -16,7 +16,7 @@ export class QuizMakerApiService {
   private questionURL = environment.getquestionApi;
   public temp: Array<questionAnswers> = [];
   constructor(private http: HttpClient) {}
-  setResultData(data: any) {
+  setResultData(data: Array<questionAnswers>) {
     this.temp = data;
   }
   getResultData() {

@@ -6,6 +6,7 @@ import {
   categoryType,
   difficultyLevel,
   questionAnswers,
+  quizQuestion,
 } from '../shared/quiz-maker.modal';
 
 @Component({
@@ -41,7 +42,7 @@ export class QuizMakerCategoryTypeComponent implements OnInit, OnDestroy {
   }
   getCategoryType() {
     this.subscriptions.push(
-      this.quizMakerApiService.getCategoryType().subscribe((res: any) => {
+      this.quizMakerApiService.getCategoryType().subscribe((res) => {
         this.categoryType = res['trivia_categories'];
       })
     );
@@ -53,7 +54,7 @@ export class QuizMakerCategoryTypeComponent implements OnInit, OnDestroy {
         this.quizMakerApiService
           .getQuestions(this.categoryId, this.difficultyName.toLowerCase())
           .subscribe(
-            (res: any) => {
+            (res) => {
               this.questionAnswers = res['results'];
               this.questionAnswers.forEach((ele, indx, val) => {
                 this.questionAnswers[indx].incorrect_answers.push(
@@ -67,14 +68,14 @@ export class QuizMakerCategoryTypeComponent implements OnInit, OnDestroy {
               });
               this.disabled = false;
             },
-            (error: any) => {
+            (error) => {
               this.disabled = false;
             }
           )
       );
     }
   }
-  randomOptionArray(array: any) {
+  randomOptionArray(array: Array<string>) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
@@ -87,7 +88,7 @@ export class QuizMakerCategoryTypeComponent implements OnInit, OnDestroy {
   selecteDifficultyLevelId(val: string) {
     this.difficultyName = val;
   }
-  buttonSelected(event: any, parentIndex: any, childIndex: any) {
+  buttonSelected(event: string, parentIndex: number, childIndex: number) {
     this.questionAnswers[parentIndex].selectedAnswer = event;
     for (let i = parentIndex; i < 5; i++) {
       for (let j = 0; j < 4; j++) {
