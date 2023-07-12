@@ -1,14 +1,11 @@
 <div class="conatiner p-4">
-  <h3 class="txt_align">RESULT</h3>
-  <div class="grid ques-text" *ngFor="let ques of result; let i = index">
+  <h3 class="txt_alignment">RESULT</h3>
+  <div class="grid" *ngFor="let ques of result; let i = index">
     <div class="col-12">
       <p [innerHTML]="ques.question"></p>
     </div>
 
-    <div
-      class="incorr-text col"
-      *ngFor="let btns of ques.incorrect_answers; let j = index"
-    >
+    <div class="col" *ngFor="let btns of ques.incorrect_answers; let j = index">
       <button
         pButton
         pRipple
@@ -33,7 +30,7 @@
   <div class="grid mt-2">
     <div class="col"></div>
     <div
-      class="score-text col"
+      class="col"
       [ngClass]="{
         red: this.count == 0 || this.count == 1,
         yelow: this.count == 2 || this.count == 3,
